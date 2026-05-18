@@ -1,5 +1,3 @@
-`include "unit.v"
-
 
 module nbit_unit #(
     parameter crc = 32,
@@ -7,8 +5,9 @@ module nbit_unit #(
     parameter n = 4
 ) (
 
-    input  [crc-1:0] in_reg,
-    input  [  n-1:0] data,
+    input [crc-1:0] in_reg,
+    input [n-1:0] data,
+    input en,
     output [crc-1:0] out_reg
 );
 
@@ -38,7 +37,7 @@ module nbit_unit #(
   endgenerate
 
 
-  assign out_reg = inter[n];
+  assign out_reg = (en) ? inter[n] : inter[0];  // inter 0 is in_reg ie current value of lfsr
 
 
 
