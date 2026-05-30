@@ -7,7 +7,6 @@ module nbit_unit #(
 
     input [crc-1:0] in_reg,
     input [n-1:0] data,
-    input en,
     output [crc-1:0] out_reg
 );
 
@@ -37,7 +36,7 @@ module nbit_unit #(
   endgenerate
 
 
-  assign out_reg = (en) ? inter[n] : inter[0];  // inter 0 is in_reg ie current value of lfsr
+  assign out_reg = inter[n];  // inter 0 is in_reg ie current value of lfsr
 
 
 
