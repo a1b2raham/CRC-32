@@ -1,5 +1,4 @@
 
-
 module crc_top #(
     parameter crc = 32,
     parameter poly = 32'hEDB88320,
@@ -28,8 +27,7 @@ module crc_top #(
   ) uut (
       .in_reg(lfsr),
       .out_reg(lfsr_out),
-      .data(data_reg),
-      .en(en_lfsr)
+      .data(data_reg)
   );
 
   // loading data.  rst not needed as initial does not matter
@@ -48,7 +46,7 @@ module crc_top #(
 
   always @(posedge clk or negedge rst_n) begin
     if (~rst_n) en_lfsr <= 0;
-    else en_lfsr <= #1 en_data;
+    else en_lfsr <= en_data;
   end
 
   // correct signal ff
@@ -64,4 +62,6 @@ module crc_top #(
 
 
 endmodule
+
+
 
